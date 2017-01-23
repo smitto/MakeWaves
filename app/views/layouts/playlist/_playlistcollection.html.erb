@@ -1,0 +1,7 @@
+<div class="card-collection">
+  <div class="row">
+    <% @playlists.each do |playlist| %>
+      <%= render 'layouts/playlist/playlist', :playlist => playlist %>
+    <% end %>
+  </div>
+</div>

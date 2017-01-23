@@ -1,0 +1,14 @@
+<div class="col s3 m3 l3">
+  <%= link_to card_user do %>
+    <div class="card">
+      <div class="card-image">
+        <%= image_tag(card_user.thumbnail.url, border: 0) %>
+      </div>
+      <div class="card-content">
+        <div class="left">
+          <%= card_user.title %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

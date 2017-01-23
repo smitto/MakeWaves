@@ -1,0 +1,32 @@
+<div class="col l2 s2 push-l10 push-s10 sidenav pinned">
+  <ul>
+      <li>
+        <h6 class="first">Your Causes:</h6>
+      <li><div class="divider"></div></li>
+      <li>
+        <% @currentuser.following.each do |icon_user| %>
+          <% if icon_user.role == "charity" %>
+            <%= render 'layouts/sidenav/friendicons', :icon_user => icon_user; %>
+          <% end %>
+        <% end %>
+      </li>
+      <li><h6>Your Artists:</h6></li>
+      <li><div class="divider"></div></li>
+      <li>
+        <% @currentuser.following.each do |icon_user| %>
+          <% if icon_user.role == "artist" %>
+            <%= render 'layouts/sidenav/friendicons', :icon_user => icon_user; %>
+          <% end %>
+        <% end %>
+      </li>
+      <li><h6>Your Friends:</h6></li>
+      <li><div class="divider"></div></li>
+      <li>
+        <% @currentuser.following.each do |icon_user| %>
+          <% if icon_user.role == "listener" %>
+            <%= render 'layouts/sidenav/friendicons', :icon_user => icon_user; %>
+          <% end %>
+        <% end %>
+      </li>
+  </ul>
+</div>

@@ -1,0 +1,101 @@
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+  <%= render 'layouts/navigation',  :user => @currentuser; %>
+  <main>
+    <div class="container">
+      <div id="user_show">
+        <div class="row dash">
+          <div class="col l9 offset-l1 scrollable">
+            <div id="links">
+                <%= render 'layouts/show/profilebanner' %>
+                <ul>
+                  <!-- Render available links conditionally on user role (Artist, Charity, User) -->
+                  <% if @user.role == "charity" %>
+                    <li><%= link_to "ABOUT", "", :id => "aboutlink", :class => "view-link active", :remote => true %></li>
+                  <% end %>
+                  <% if @user.role != "charity" %>
+                    <li><%= link_to "SONGS", "", :id => "songslink", :class => "view-link active", :remote => true %></li>
+                  <% end %>
+                  <li><%= link_to "PLAYLISTS", "", :id => "playlistlink", :class => "view-link", :remote => true %></li>
+                  <li><%= link_to "FOLLOWERS", "", :id => "followerslink", :class => "view-link", :remote => true %></li>
+                  <li><%= link_to "FOLLOWING", "", :id => "followinglink", :class => "view-link", :remote => true %></li>
+                  <% if @user == @currentuser %>
+                    <li><%= link_to "CREATE NEW PLAYLIST", "#playlistmodal" %></li>
+                  <% end %>
+                </ul>
+            </div>
+            <!-- All #links change div#subview -->
+            <div id="subview">
+              <% if @user.role != "charity" %>
+                <%= render 'layouts/show/songcollection' %>
+              <% end %>
+              <% if @user.role == "charity" %>
+                <%= render 'layouts/charity/about' %>
+              <% end %>
+            </div>
+  				</div>
+            <%= render 'layouts/sidenav' %>
+        </div>
+      </div>
+    </div>
+    <%= render 'layouts/wavesurfer'; %>
+  </main>
+  <%= render 'layouts/forms/uploadmodal',  :user => @currentuser; %>
+  <%= render 'layouts/playlist/playlistmodal'; %>
+  <%= javascript_include_tag "application"; %>
+</body>
+<!-- AJAX calls to load new sections without reloading page. -->
+<script>
+  $(document).ready(function(){
+    $songslink = $('#songslink');
+    $followerslink = $('#followerslink');
+    $followinglink = $('#followinglink');
+    $playlistlink = $('#playlistlink');
+    $aboutlink = $('#aboutlink');
+    $subview = $('#subview');
+
+    // Reload Main Stream
+    $songslink.click(function(event) {
+      event.preventDefault();
+      $subview.html("<%=j render(partial: 'layouts/show/songcollection') %>");
+      $('.view-link').removeClass('active');
+      $(event.currentTarget).addClass('active');
+    })
+
+    // For Charity About Section
+    $aboutlink.click(function(event) {
+      event.preventDefault();
+      $subview.html("<%=j render(partial: 'layouts/charity/about') %>");
+      $('.view-link').removeClass('active');
+      $(event.currentTarget).addClass('active');
+    })
+
+    // For Followers Collection (Charities, Users, etc.)
+    $followerslink.click(function(event) {
+      event.preventDefault();
+      $subview.html("<%=j render(partial: 'layouts/show/follower_cards') %>");
+      $('.view-link').removeClass('active');
+      $(event.currentTarget).addClass('active');
+    })
+
+    // For Following Collection (Charities, Users, etc.)
+    $followinglink.click(function(event) {
+      event.preventDefault();
+      $subview.html("<%=j render(partial: 'layouts/show/following_cards') %>");
+      $('.view-link').removeClass('active');
+      $(event.currentTarget).addClass('active');
+    })
+
+    // For Following Collection (Charities, Users, etc.)
+    $playlistlink.click(function(event) {
+      event.preventDefault();
+      $subview.html("<%=j render(partial: 'layouts/playlist/playlistcollection') %>");
+      $('.view-link').removeClass('active');
+      $(event.currentTarget).addClass('active');
+    })
+
+  });
+</script>

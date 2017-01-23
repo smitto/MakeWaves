@@ -1,0 +1,51 @@
+# navigate to the makewaves folder
+git init
+git add .
+git commit -m "message"
+
+# create Heroku app (where APPNAME is Heroku app name)
+heroku login
+heroku create APPNAME
+heroku git:remote -a APPNAME
+
+# run these before each startup
+heroku run rake db:reset
+heroku run rake db:migrate
+
+# Set up AWS for image and song uploading with paperclip
+# In AWS make sure that you have your bucket permissions set up (save the default CORS configuration in AWS)
+# Set config/environments/production.rb to have the following:
+config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_region => ENV['AWS_REGION'],
+  :s3_credentials => {
+    :bucket => ENV['S3_BUCKET_NAME'],
+    :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+  }
+}
+
+# run the following in command line (with your AWS Bucket and Key Credentials - found in AWS account website):
+heroku config:set S3_BUCKET_NAME='S3_BUCKET_NAME'
+heroku config:set AWS_ACCESS_KEY_ID='AWS_ACCESS_KEY_ID'
+heroku config:set AWS_SECRET_ACCESS_KEY='AWS_SECRET_ACCESS_KEY'
+
+# now, image uploading should work properly!
+# song uploading working properly after reworking song_thumbnail in controller
+# reset to undo last 5 commits, now building properly
+
+# add Redis to Heroku (where APPNAME is the name of your created Heroku app)
+heroku addons:create heroku-redis:hobby-dev -a
+
+# push app setup to Heroku
+git push heroku master
+
+# To reset and migrate the database run the following commands:
+heroku run rake db:reset
+heroku run rake db:migrate
+
+# To reset the Redis server database run the following commands (needs to be done if the database is reset)
+# (where APPNAME is the Heroku app name):
+heroku redis:cli -a APPNAME -c APPNAME
+# In the Redis Console run:
+FlushAll

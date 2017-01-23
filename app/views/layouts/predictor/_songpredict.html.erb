@@ -1,0 +1,5 @@
+<div class="collection">
+  <% @predicted_songs.each do |s| %>
+    <%= render 'layouts/building_blocks/song', :s => s %>
+  <% end %>
+</div>

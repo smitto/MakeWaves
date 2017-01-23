@@ -1,0 +1,79 @@
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+  <main>
+    <%= render 'layouts/navigation',  :user => @currentuser; %>
+    <div class="container">
+      <div id="user_show">
+        <div class="row dash">
+          <div class="col l9 offset-l1 s9 offset-s1 scrollable">
+            <div id="links">
+                <ul>
+                  <li><%= link_to "STREAM", "", :id => "stream", :class => "view-link active", :remote => true %></li>
+                  <li><%= link_to "CAUSES", "", :id => "causelink", :class => "view-link", :remote => true %></li>
+                  <li><%= link_to "NEW RELEASES", "", :id => "newreleases", :class => "view-link", :remote => true %></li>
+                  <li><%= link_to "SUGGESTIONS", "", :id => "predictions", :class => "view-link", :remote => true %></li>
+                </ul>
+            </div>
+            <!-- All #links change div#subview -->
+            <div id="subview">
+              <%= render 'layouts/dashboard/stream' %>
+            </div>
+          </div>
+            <!-- Display Your Friends, Artists and Causes -->
+          <%= render 'layouts/sidenav'; %>
+        </div>
+      </div>
+    </div>
+    <%= render 'layouts/wavesurfer'; %>
+  </main>
+  <!-- Display Upload Modal on "Upload" ... Artists Only (See navigation.html.erb) -->
+  <%= render 'layouts/forms/uploadmodal'; %>
+  <%= javascript_include_tag "application"; %>
+</body>
+
+<!-- AJAX calls to load new sections without reloading page. -->
+<script>
+  $(document).ready(function(){
+    $streamlink = $('#stream');
+    $causelink = $('#causelink');
+    $newreleaseslink = $('#newreleases');
+    $predictlink = $('#predictions');
+    $subview = $('#subview');
+
+    // For Card Collection (Charities, Users, etc.)
+    $causelink.click(function(event) {
+      event.preventDefault();
+      $subview.html("<%=j render(partial: 'layouts/dashboard/charity_cards') %>");
+      $('.view-link').removeClass('active');
+      $(event.currentTarget).addClass('active');
+    })
+
+    // Reload Main Stream
+    $streamlink.click(function(event) {
+      event.preventDefault();
+      $subview.html("<%=j render(partial: 'layouts/dashboard/stream') %>");
+      $('.view-link').removeClass('active');
+      $(event.currentTarget).addClass('active');
+    })
+
+    // For Card Collection (Charities, Users, etc.)
+    $newreleaseslink.click(function(event) {
+      event.preventDefault();
+      $subview.html("<%=j render(partial: 'layouts/dashboard/newreleases') %>");
+      $('.view-link').removeClass('active');
+      $(event.currentTarget).addClass('active');
+    })
+
+    // For Song Predictions
+    $predictlink.click(function(event) {
+      event.preventDefault();
+      $subview.html("<%=j render(partial: 'layouts/predictor/songpredict') %>");
+      $('.view-link').removeClass('active');
+      $(event.currentTarget).addClass('active');
+    })
+
+  });
+</script>

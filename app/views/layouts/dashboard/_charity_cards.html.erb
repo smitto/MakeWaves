@@ -1,0 +1,8 @@
+<div class="card-collection">
+  <div class="row">
+    <% all_charities = User.where(:role=>"charity") %>
+    <% all_charities.each do |card_user| %>
+      <%= render 'layouts/building_blocks/user_card', :card_user => card_user; %>
+    <% end %>
+  </div>
+</div>

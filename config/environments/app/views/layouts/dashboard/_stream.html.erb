@@ -1,0 +1,5 @@
+<div class="collection">
+  <% current_user.feed.each do |s| %>
+    <%= render 'layouts/building_blocks/song', :s => s %>
+  <% end %>
+</div>

@@ -1,0 +1,65 @@
+<!-- Form to Create Song Under Current User. -->
+<%= form_for ([@currentuser, @song]) do |f| %>
+	<div class="field">
+		<%= f.label :title, "Name" %><br />
+		<%= f.text_field :title, autofocus: true %>
+	</div>
+	<div class="field">
+		<%= f.label :artist, "Artist" %><br />
+		<%= f.text_field :artist, autofocus: true %>
+	</div>
+	<div class="field">
+		<%= f.label :genre_tag, "Genre" %><br />
+		<%= f.select :genre_tag, ["Pop", "Rock", "Classical", "Country", "Electronic", "Hip-Hop", "World"], class: "input-field genre-drop" %>
+	</div>
+	<div class="field">
+		<%= f.label :charity_tag, "Charity" %><br />
+		<%= f.select :charity_tag, User.where(:role=>"charity").pluck(:title), class: "input-field genre-drop" %>
+	</div>
+	<div class="field">
+		<%= f.file_field :mp3, :class => "btn", :id => "fileInput", :hidden =>"true" %>
+    <div class="btn upload" id="uploadButton">
+      Upload
+    </div>
+    <div id="fileName">No file chosen</div>
+  </div>
+	<%= f.submit "Submit", class: "btn submit", id: "uploadSubmit" %>
+<% end %>
+
+<!-- Style here out of necessity. For javascript. -->
+<style>
+  #fileInput {
+    display: none;
+  }
+</style>
+
+<!-- Hide Song Upload Field in order to Customize Upload Button. -->
+<script>
+  // From http://stackoverflow.com/questions/14509449/styling-file-upload-button-for-simple-form-for-with-bootstrap-in-rails-3
+  $(document).ready(function() {
+
+    $realInputField = $('#fileInput');
+    $fileNameDisplay = $('#fileName');
+
+		$(document).ready(function() {
+				$('select').material_select({
+					constrain_width: false
+				});
+		});
+
+		// Change Regex in File Name Display
+    $realInputField.change(function() {
+      $fileNameDisplay.html($realInputField.val().replace(/^.*[\\\/]/, ''));
+    });
+
+		// Alter Input Field Functionality
+    $('#uploadButton').click(function() {
+      $realInputField.click();
+    })
+
+		// Display Default Message on Click (Shows if No File is Uploaded)
+    $('#uploadSubmit').click(function() {
+      $fileNameDisplay.html("No file chosen");
+    })
+  });
+</script>

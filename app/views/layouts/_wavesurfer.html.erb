@@ -1,0 +1,51 @@
+<div class="row player valign-wrapper">
+  <div class="col l1 control valign" onclick="playPause(this)">
+    <i id="play" class="material-icons valign bottom-play play">play_circle_outline</i>
+    <i id="pause" class="material-icons valign bottom-pause pause" style="display: none;">pause_circle_outline</i>
+  </div>
+  <!--<div class="col l1 rewind">
+    <i class="small material-icons valign">fast_rewind</i>
+  </div>-->
+  <!--<div class="col l1 fast-forward">
+    <i class="small material-icons valign">fast_forward</i>
+  </div>-->
+  <div id="waveform" class="col l10 valign"></div>
+  <div class="col l1 fast-forward">
+    <!--<i class="small material-icons valign">fast_forward</i>-->
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.6/wavesurfer.min.js"></script>
+
+<script>
+  var ctx = document.createElement('canvas').getContext('2d');
+  var linGrad = ctx.createLinearGradient(0, 64, 0, 200);
+  linGrad.addColorStop(0.5, 'rgba(255, 255, 255, 1.000)');
+  linGrad.addColorStop(0.5, 'rgba(183, 183, 183, 1.000)');
+
+  var wavesurfer = WaveSurfer.create({
+    container: '#waveform',
+    barWidth: 2,
+    waveColor: linGrad,
+    progressColor: 'hsla(200, 100%, 30%, 0.9)',
+    cursorColor: 'hsla(200, 100%, 30%, 0.9)',
+    height: 48
+  });
+
+  function playPause(control) {
+    console.log(currentsong);
+    if(control.querySelector(".play").style.display != "none") {
+      control.querySelector(".play").style.display = "none";
+      control.querySelector(".pause").style.display = "block";
+      document.querySelector("#play" + currentsong).style.display = "none";
+      document.querySelector("#pause" + currentsong).style.display = "block";
+    }
+    else {
+      control.querySelector(".play").style.display = "block";
+      control.querySelector(".pause").style.display = "none";
+      document.querySelector("#play" + currentsong).style.display = "block";
+      document.querySelector("#pause" + currentsong).style.display = "none";
+    }
+    wavesurfer.playPause();
+  }
+
+</script>

@@ -1,0 +1,84 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.6/wavesurfer.min.js"></script>
+<ul id="dropdown_<%= s.id %>" class="dropdown-content playlist-dropdown">
+  <% @current_user_playlists.each do |playlist| %>
+    <% next if playlist.songs.include?(s) %>
+      <li><%= link_to playlist.title, user_playlist_songs_path(@currentuser, playlist_id: playlist.id, song_id: s.id), method: :post %></li>
+  <% end %>
+</ul>
+<div id="<%= s.mp3_file_name %>"  class="collection-item button-collapse">
+  <div class="row valign-wrapper">
+    <div class="col l1 control valign" onclick="addSongToHistoryAndPlay('<%= @currentuser.id%>','<%= s.id %>',this,'<%= s.mp3.url %>'); ">
+      <i id="play<%=s.id%>" class="material-icons valign play">play_circle_outline</i>
+      <i id="pause<%=s.id%>" class="material-icons valign pause" style="display: none;">pause_circle_outline</i>
+    </div>
+    <div class="col l2 truncate valign">
+      <%= s.title %>
+    </div>
+    <div class="col l3 truncate valign">
+      <%= s.artist %>
+    </div>
+    <div class="col l1 valign">
+      <% if PlaylistSong.exists?(playlist_id: @favorite_playlist.id, song_id: s.id) %>
+        <%= link_to "<span class=\"left\">#{ s.num_favorites }</span><i class=\"material-icons right likes valign\">favorite</i>".html_safe, user_playlist_songs_path(@currentuser, playlist_id: @favorite_playlist.id, song_id: s.id), method: :delete %>
+      <% else %>
+        <%= link_to "<span class=\"left\">#{ s.num_favorites }</span><i class=\"material-icons right likes valign\">favorite</i>".html_safe, user_playlist_songs_path(@currentuser, playlist_id: @favorite_playlist.id, song_id: s.id), method: :post %>
+      <% end %>
+    </div>
+    <div class="col l1 valign-wrapper">
+      <%= link_to '<i class="small material-icons add-playlist">playlist_add</i>'.html_safe, "#!", :data => {:activates => "dropdown_#{s.id}", :beloworigin => "true"}, :class => "dropdown-button" %>
+    </div>
+    <div class="col l3 truncate valign">
+      <div class="chip">
+        <%= s.genre_tag %>
+      </div>
+    </div>
+    <div class="col l2 truncate valign">
+      <div class="chip charity">
+        <%= s.charity_tag %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  currentsong = "";
+  function addSongToHistoryAndPlay(userId, songId, control, songmp3) {
+    if(control.querySelector(".play").style.display != 'none') {
+      if(currentsong != songId) {
+        $.ajax({
+          url: '/users/' + userId + '/api/addSongToHistory',
+          type: 'POST',
+          data: {user_id: userId, song_id: songId},
+          success: function(response) {},
+          error: function(response) {console.log(response)}
+        });
+        document.querySelectorAll(".play").forEach(function(item){
+          item.style.display = 'block';
+        })
+        document.querySelectorAll(".pause").forEach(function(item) {
+          item.style.display = 'none';
+        })
+        wavesurfer.load(songmp3);
+        wavesurfer.on('ready', function () {
+          wavesurfer.play();
+        });
+        currentsong = songId;
+      }
+      else {
+        wavesurfer.play();
+      }
+      control.querySelector(".pause").style.display = 'block';
+      control.querySelector(".play").style.display = 'none';
+      document.querySelector(".bottom-pause").style.display = 'block';
+      document.querySelector(".bottom-play").style.display = 'none';
+    }
+    else {
+      console.log("else")
+      control.querySelector(".play").style.display = 'block';
+      control.querySelector(".pause").style.display = 'none';
+      document.querySelector(".bottom-pause").style.display = 'none';
+      document.querySelector(".bottom-play").style.display = 'block';
+      wavesurfer.pause();
+    }
+  }
+</script>

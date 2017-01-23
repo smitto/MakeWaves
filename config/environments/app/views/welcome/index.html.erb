@@ -1,0 +1,110 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="viewport" content="width=device-width" />
+</head>
+<body>
+	<%= javascript_include_tag "application" %>
+	<!-- Enable Modals -->
+	<script>
+	$(document).ready(function(){
+		 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+		 $('.modal').modal();
+	});
+	</script>
+	<div class="container">
+	<!-- MakeWaves Welcome Banner -->
+	<div id="section">
+		<div id="background">
+			<div class="row navbar-fixed">
+				<div class="nav-wrapper">
+					<div class="col l1 offset-l1 s12 logo">
+					<%= link_to image_tag("makewaves.png", border: 0), "#" %>
+					</div>
+					<div class="col l8 offset-l1 s12">
+						<div class="row buttons">
+							<div class="col l3 s12 mobile-space">
+								<%= link_to "Sign In", "#modal2", :class => "modal-trigger btn-flat  sign-btn" %>
+							</div>
+							<div class="col l3 s12 mobile-space">
+						  	<%= link_to 'Create Account', '#modal1' , :class => "modal-trigger btn-flat ca-btn" %>
+							</div>
+							<div class="col l3 s12 mobile-space">
+						  	<%= link_to 'Artists', '#modal4' , :class => "modal-trigger btn-flat art-btn" %>
+							</div>
+							<div class="col l3 s12 mobile-space">
+								<%= link_to 'Charities', '#modal3' , :class => "modal-trigger btn-flat char-btn" %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<h1>Music with a Mission</h1>
+			<h1 class="tagline-s">Raise awareness for causes you believe in</br>on the premiere benefit streaming platform.</h1>
+		</div>
+	</div>
+	<!-- MakeWaves Introduction to Benefit Streaming -->
+	<div id="small-section" class="about-streaming">
+		<h1>What is Benefit Streaming?</h1>
+		<div class="row charity-cards">
+			<div class="col l4 s12">
+				<%= image_tag "represent.png" %>
+				<h5>Represent.</h5>
+				<hr class="hide-on-med-and-down"/>
+				<p>Artists choose a charity to represent on every uploaded track.</p>
+			</div>
+			<div class="col l4 s12">
+				<%= image_tag "listen.png" %>
+				<h5>Listen.</h5>
+				<hr class="hide-on-med-and-down"/>
+				<p>Fans generate proceeds by listening. Funds are generated per play.</p>
+			</div>
+			<div class="col l4 s12">
+				<%= image_tag "donate.png" %>
+				<h5>Donate.</h5>
+				<hr class="hide-on-med-and-down"/>
+				<p>Proceeds are donated to the artist's cause.</p>
+			</div>
+		</div>
+	</div>
+	<!-- Footer -->
+	<div id="footer">
+	<!-- MakeWaves Copyright -->
+	</div>
+	</div>
+	<!-- Modals -->
+	<div class="container">
+		<div class="row modal-row">
+			<div class="modal col l4" id="modal1">
+				<h4>sign up. make<span style="font-style: italic; color: #0084AD;">waves</span>.</h4>
+				<div class="modal-content">
+					<%= render 'devise/registrations/createaccount' %>
+				</div>
+			</div>
+		</div>
+		<div class="row modal-row">
+			<div class="modal col l4" id="modal3">
+				<h4>raise funds. make<span style="font-style: italic; color: #0084AD;">waves</span>.</h4>
+				<div class="modal-content">
+					<%= render 'devise/registrations/createcharity' %>
+				</div>
+			</div>
+		</div>
+		<div class="row modal-row">
+			<div class="modal col l4" id="modal4">
+				<h4>make music. make<span style="font-style: italic; color: #0084AD;">waves</span>.</h4>
+				<div class="modal-content">
+					<%= render 'devise/registrations/createartist' %>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="modal col l4" id="modal2">
+				<h4>welcome back to make<span style="font-style: italic; color: #0084AD;">waves</span>.</h4>
+				<div class="modal-content">
+					<%= render 'devise/sessions/signin' %>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

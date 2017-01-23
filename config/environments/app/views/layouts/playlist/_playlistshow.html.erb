@@ -1,0 +1,10 @@
+<div id="subview">
+  <h3><%= @current_playlist.title %></h3>
+  <ul>
+    <div class="collection">
+      <% @current_playlist.songs.each do |song| %>
+        <%= render 'layouts/building_blocks/song', :s => song %>
+      <% end %>
+    </div>
+  </ul>
+</div>

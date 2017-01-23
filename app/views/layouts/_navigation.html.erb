@@ -1,0 +1,72 @@
+<div class="navbar-fixed user-navbar">
+  <ul id="dropdown1" class="dropdown-content playlist-dropdown">
+    <li>
+      <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+    </li>
+  </ul>
+  <nav>
+    <div class="nav-wrapper row">
+      <div class="col l2"><%= link_to image_tag("makewaves.png", border: 0), authenticated_root_path, :class => "usernavlogo brand-logo" %></div>
+      <div class="search col l4">
+        <%= form_tag(users_path, :method => "get", id: "search") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "search", class: "searchfield" %>
+          <!--<label for="search"><i class="material-icons">search</i></label> -->
+        <% end %>
+      </div>
+      <% if @currentuser.role == "artist" %>
+        <div class="col offset-l1 l1 upload">
+          <%= link_to "UPLOAD", '#modalnew' %>
+        </div>
+      <% end %>
+      <% if @currentuser.role == "artist" %>
+        <div class="col offset-l1 l3">
+      <% else %>
+        <div class="col offset-l3 l3">
+      <% end %>
+        <div class="row">
+          <% if @currentuser.role != "charity" %>
+            <div class ="col l3">
+              <%= link_to "Settings", "#modalaccountedit" %></li>
+            </div>
+          <% else %>
+            <div class ="col l3">
+              <%= link_to "Settings", "#modalcharityedit" %></li>
+            </div>
+          <% end %>
+
+            <div class="col l2 nav-options">
+            <%= link_to current_user do %>
+              <%= image_tag user.thumbnail, :class=> "navpic" %>
+            <% end %>
+            </div>
+            <div class="col l3 dropdown-button nav-options" data-activates="dropdown1" data-beloworigin="true" data-alignment="right">
+              <a href="#!"><i class="small material-icons">more_horiz</i></a>
+            </div>
+            <div class="col l3 nav-options">
+              <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+            </div>
+       </div>
+     </div>
+    </div>
+  </nav>
+</div>
+
+<div class="container">
+  <div class="row modal-row">
+		<div class="modal col l4" id="modalaccountedit">
+			<h4>Edit Account Information.</h4>
+			<div class="modal-content">
+				<%= render 'devise/registrations/editaccount' %>
+			</div>
+		</div>
+	</div>
+
+  <div class="row modal-row">
+		<div class="modal col l4" id="modalcharityedit">
+			<h4>Edit Charity Information.</h4>
+			<div class="modal-content">
+				<%= render 'devise/registrations/editcharity' %>
+			</div>
+		</div>
+	</div>
+</div>

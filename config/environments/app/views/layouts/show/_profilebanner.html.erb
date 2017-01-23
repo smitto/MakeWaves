@@ -1,0 +1,8 @@
+<div class="banner valign-wrapper">
+      <%= image_tag @user.thumbnail, :class=> "profile-picture circle valign" %>
+      <div class="banner-data">
+        <h3><%= @user.title %></h3>
+        <%= render 'layouts/forms/follow_form'%>
+        <h6><%= @user.followers.count %> Followers</h6>
+      </div>
+</div>

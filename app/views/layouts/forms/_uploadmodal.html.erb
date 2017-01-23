@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row modal-row">
+    <div class="modal col l4" id="modalnew">
+      <div class="modal-header">
+        <h4>upload to make<span style="font-family: 'AvenirNextLight'; font-style: italic;">waves</span></h4>
+      </div>
+      <div class="modal-content">
+        <%= render 'songs/new',  :user => @currentuser; %>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+$(document).ready(function(){
+   // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+   $(document).ready(function(){
+   	 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal({
+     opacity: .5, // Opacity of modal background
+     in_duration: 300, // Transition in duration
+     out_duration: 200, // Transition out duration
+     starting_top: '4%', // Starting top style attribute
+     ending_top: '10%', // Ending top style attribute
+     ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+       /**if($(".modal-overlay").length > 1) {
+           $(".modal-overlay:not(:first)").each(function() {
+               $(this).remove();
+           });
+       }**/
+     },
+     complete: function() {
+       if($(".modal-overlay").length > 1) {
+           $(".modal-overlay").each(function() {
+               $(this).remove();
+           });
+       }
+     } // Callback for Modal close
+     }
+   );
+   });
+});
+</script>

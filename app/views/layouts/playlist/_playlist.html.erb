@@ -1,0 +1,26 @@
+<% @current_playlist = playlist %>
+<div class="col s3 m3 l3">
+  <%= link_to "#", :id => "playlistshow#{playlist.id}", :class => "view-link" do %>
+    <div class="card">
+      <div class="card-image">
+        <%= image_tag(@current_playlist.thumbnail.url, border: 0)%>
+      </div>
+      <div class="card-content">
+        <div class="left">
+          <%= playlist.title %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<script>
+  $(document).ready(function(){
+    $playlistshow = $('#playlistshow<%= playlist.id %>');
+    $playlistshow.click(function(event) {
+      event.preventDefault();
+      $subview.html("<%=j render(partial: 'layouts/playlist/playlistshow') %>");
+      $('.view-link').removeClass('active');
+      $(event.currentTarget).addClass('active');
+    })
+  });
+</script>

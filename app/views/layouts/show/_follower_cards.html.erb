@@ -1,0 +1,7 @@
+<div class="card-collection">
+  <div class="row">
+    <% @user.followers.each do |card_user| %>
+      <%= render 'layouts/building_blocks/user_card', :card_user => card_user; %>
+    <% end %>
+  </div>
+</div>

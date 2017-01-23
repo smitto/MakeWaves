@@ -1,0 +1,329 @@
+main {
+	flex: 1 0 auto;
+}
+#users {
+	padding-bottom: 3rem;
+	ul {
+		list-style: none;
+		padding-left: 0;
+		margin: 0;
+		li {
+			width: 23%;
+			float: left;
+			margin: 0 1% 2rem 1%;
+			-webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.25);
+			box-shadow: 0 1px 1px 0 rgba(0,0,0,0.25);
+			border-radius: .35rem;
+			img {
+				width: 100%;
+				max-width: 100%;
+				border-radius: .35rem .35rem 0 0;
+			}
+			.user_overview {
+				padding: 1rem 7.5%;
+				h2 {
+					margin: 0;
+					font-size: 1rem;
+					font-weight: 700;
+					color: $dark;
+				}
+			}
+			&:hover {
+				img {
+					opacity: .8;
+				}
+				.user_overview {
+					h2 {
+						color: $highlight;
+					}
+				}
+			}
+		}
+	}
+}
+
+#user_show {
+	.col.l9 {
+		padding-right: 0 !important;
+		margin-bottom: 4%;
+	}
+	.abouttext {
+		padding: 1rem 0;
+		color: white;
+	}
+	.banner {
+		margin: 4% 0;
+		background: -moz-linear-gradient(90deg, $mw-bg-gray 10%, $dark 10%);
+		background: -o-linear-gradient(90deg, $mw-bg-gray  10%, $dark 10%);
+		background: linear-gradient(90deg, $mw-bg-gray  10%, $dark 10%);
+		height: 15rem;
+		.profile-picture {
+			background-color: $mw-blue;
+			width: 17rem;
+			height: 17rem;
+		}
+		.banner-data {
+			margin-left: 5rem;
+			h3 {
+				margin-top: 0;
+			}
+			h6 {
+				color: $gray-l;
+			}
+		}
+		.btn.follow {
+			margin-bottom: 1rem;
+			color: $gray-l-2;
+			background: rgba(200,200,200,0.4);
+			border: 1px solid $gray-l-2;
+		}
+		.btn.follow:hover {
+			border: 1px solid $white;
+			background: rgba(255,255,255,0.4);
+			color: $white;
+		}
+	}
+	.sidenav {
+		display: flex;
+		min-height: 88vh;
+		max-height: 88vh;
+		flex-direction: column;
+		overflow-y: scroll;
+		z-index: 10;
+		background: $dark;
+		font-family: 'AvenirNextLight';
+		padding: 0 1.25% 1.25% 1.25%;
+		h6:not(.first) {
+			margin-top: 3rem;
+		}
+		h6.first {
+			padding-top: 1.25%;
+		}
+		h6 {
+			color: $white;
+			font-size: 1.2rem;
+		}
+		.name {
+			color: $gray-l;
+			font-size: 0.9rem;
+		}
+		.playlist {
+			margin-top: 2.5%;
+			.playlist-img {
+				width: 100%;
+			}
+			.playlist-data h6 {
+				color: $gray-l;
+			}
+		}
+		.profileicon {
+			margin-top: 10%;
+			.col {
+				margin-left: 0 !important;
+			}
+			.profileicon-img {
+				width: 4rem;
+				max-height: 4rem;
+				border-radius: 50%;
+			}
+			.profileicon-data h6 {
+				margin-top: 0rem;
+				color: $gray-l;
+			}
+		}
+	}
+	#breadcrumb {
+		padding: 1rem 0;
+		text-align: center;
+		border-bottom: 1px solid lighten($dark, 75%);
+		font-weight: 700;
+		font-size: .7rem;
+		a {
+			color: lighten($dark, 45%);
+			text-decoration: none;
+		}
+		span {
+			margin: 0 .5rem;
+		}
+	}
+	ul#dropdown2 {
+		z-index: 999;
+	}
+	#links {
+		position: relative;
+		z-index: 10;
+		width: 100%;
+		background-color: $mw-bg-gray;
+		ul {
+			list-style: none;
+			padding-left: 0;
+			padding: 1rem 0;
+			margin-bottom: 0;
+			border-bottom: 1px solid lighten($dark, 75%);
+			li {
+				display: inline;
+				margin-right: 1rem;
+				font-weight: 700;
+				a.view-link{
+					font-family: "AvenirNextLight";
+					font-size: 1.2rem;
+					color: $gray-l;
+					text-decoration: none;
+					&:hover {
+						color: $white;
+					}
+				}
+				a.view-link.active {
+					color: $white;
+					border-bottom: 1.8px solid $mw-red-l;
+					padding-bottom: 1.05rem;
+					transition: 0.5s;
+					-webkit-transition: 0.5s;
+				}
+			}
+			.current {
+				color: $highlight;
+			}
+		}
+	}
+	.playlist {
+		margin-top: 2.5%;
+		.playlist-img {
+			width: 100%;
+		}
+		.playlist-data h6 {
+			color: $gray-l;
+		}
+	}
+	.collection, .card-collection {
+		position: relative;
+		margin-top: 0%;
+		border-radius: 0px;
+		border: none;
+		overflow: visible;
+		z-index: 5;
+		.row {
+			margin-bottom: 0px;
+			width: 100%;
+		}
+		.collection-item {
+			color: $white;
+			background-color: $black;
+			border-color: $gray-l;
+			.title, .artist, .duration {
+				color: $gray-l;
+			}
+			.control {
+				cursor: pointer;
+			}
+			.play, .pause {
+				font-size: 2rem;
+			}
+			.likes {
+				color: $gray-l;
+				font-size: 1.25rem;
+				padding-left: 1rem;
+				&:hover {
+					color: $white;
+				}
+			}
+			.reblogs {
+				color: $gray-l;
+				&:hover {
+					color: $mw-blue-l;
+				}
+			}
+			.add-playlist {
+				color: $white;
+				padding-top: 0.5rem;
+			}
+			.chip {
+				font-family: "AvenirNextLight";
+				height: 24px;
+				line-height: 24px;
+				margin-bottom: 0;
+				background-color: $gray-l;
+				color: $white;
+			}
+			.chip.charity {
+				background-color: $mw-blue;
+			}
+			&:hover {
+				background-color: $mw-darker-blue;
+			}
+		}
+		.card {
+			background: $dark;
+			color: $gray-l;
+			border-radius: 0;
+			}
+			.card-image {
+				width: 16rem;
+				height: 16rem;
+				margin:  auto;
+				padding: 3% 2%;
+				img {
+					border-radius: 0;
+				}
+			}
+		.card-content {
+			height: 2.75rem;
+			padding: 2.5% 5% 0 5%;
+			a {
+				color: $gray-l;
+				&:hover {
+					color: $gray-l-2;
+				}
+			}
+		}
+		ul {
+			margin: 0;
+		}
+	}
+}
+.modal-row .col {
+	padding: 0 0 !important;
+}
+.modal {
+	position: absolute;
+	max-height: 60%;
+  min-width: 40%;
+	text-align: center;
+	margin: 0 auto;
+	overflow-y: hidden;
+	border-radius: 1%;
+	.modal-header {
+		color: $white;
+		background-color: $mw-blue;
+		text-align: center;
+	}
+	h4 {
+		font-family: "AvenirNextLight";
+		padding: 1rem 0 1rem 0;
+		font-size: 2rem;
+	}
+	.btn.upload {
+		background-color: $mw-blue;
+		margin-bottom: 2rem;
+	}
+	.btn.submit {
+		background-color: $mw-dark-blue;
+	}
+  #fileName {
+    margin-bottom: 2rem;
+  }
+	.select-dropdown {
+		overflow-y: auto;
+		width: 100% !important;
+		font-size: 0.5rem;
+	}
+	ul.dropdown-content li {
+		padding: 0 0 !important;
+	}
+	.textarea {
+		color: $black;
+		margin-top: 1.5rem;
+		resize: vertical;
+		height: auto;
+	}
+}

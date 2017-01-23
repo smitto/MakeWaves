@@ -1,0 +1,69 @@
+<div id="user_show">
+  <div id="show_banner">
+    <div class="wrapper_skinny">
+      <h1>Account Dashboard</h1>
+    </div>
+  </div>
+
+  <div id="links">
+    <div class="wrapper_skinny">
+      <ul>
+
+        <li><%= link_to "Account Settings", edit_user_registration_path, class: "current" %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="form">
+  <div class="container">
+    <div class="row form">
+    <div class="col l9 offset-l2 m11 offset-m1">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="field">
+        <%= f.label :title %><br />
+        <%= f.text_field :title, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :description %><br />
+        <%= f.text_area :description %>
+      </div>
+
+      <div class="field">
+        <%= f.label :thumbnail %><br />
+        <%= f.file_field :thumbnail %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+        <%= f.password_field :current_password, autocomplete: "off" %>
+      </div>
+
+
+      <div class="actions">
+        <%= f.submit "Update", class: "button button_highlight button_block" %>
+      </div>
+
+    <% end %>
+  </div>
+  </div>
+  </div>
+</div>

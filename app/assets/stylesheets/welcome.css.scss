@@ -1,0 +1,307 @@
+body {
+	display: block;
+	font-family: 'AvenirNext';
+	background-color: $mw-bg-gray;
+	overflow-x: hidden;
+	.container {
+		min-width: 100%;
+		height: auto;
+		#section {
+			height: 100vh;
+		#background {
+			z-index: 0;
+			background-image: image-url("homepage_background.jpg");
+			height: 100%;
+			background-size: cover;
+			background-position: center;
+			text-align: center;
+			.navbar-fixed {
+				padding: 2rem 0;
+				width: 100%;
+				height: auto;
+					ul {
+						float: right;
+						list-style: none;
+						margin: 0;
+						li {
+							display: inline;
+							margin-left: 2.5rem;
+							a {
+								color: $white;
+								text-decoration: none;
+							}
+						}
+					}
+			}
+			h1 {
+				color: $white;
+				font-size: 3.5rem;
+				font-weight: 600;
+				letter-spacing: 1px;
+				margin: 20vh 0 1rem 0;
+			}
+			.tagline-s {
+				font-family: 'AvenirNextLight';
+				font-size: 2rem;
+				font-weight: 100;
+				margin: 1rem 0;
+				text-align: center
+			}
+			.buttons {
+				margin-top: 0rem;
+				font-size: 1em;
+			}
+			.btn-flat {
+				color: $white;
+				text-transform: none;
+				width: 80%;
+			}
+			.sign-btn {
+				border: solid;
+				border-width: 2px;
+				border-color: $white;
+				&:hover {
+					border-color: $mw-blue-l;
+					color: $mw-blue-l;
+					background-color: none;
+					transition: 1s;
+					-webkit-transition: 1s;
+				}
+			}
+			.ca-btn {
+				background-color: $mw-blue;
+				&:hover {
+					background-color: $white;
+					color: $mw-blue;
+					transition: 1s;
+					-webkit-transition: 1s;
+				}
+			}
+			.char-btn {
+				background-color: $mw-red-l;
+				&:hover {
+					background-color: $white;
+					color: $mw-red-l;
+					transition: 1s;
+					-webkit-transition: 1s;
+				}
+			}
+			.art-btn {
+				background-color: $mw-dark-blue;
+				&:hover {
+					background-color: $white;
+					color: $mw-dark-blue;
+					transition: 1s;
+					-webkit-transition: 1s;
+				}
+			}
+		}
+		}
+		#small-section{
+			height: 60vh;
+			text-align: center;
+			background-color: $dark;
+			h1 {
+				color: $white;
+				font-size: 3rem;
+				font-weight: 200;
+				letter-spacing: 1px;
+				margin: 0;
+				padding: 2rem 0 1rem 0;
+			}
+			.charity-cards {
+				margin-top: 5%;
+				padding: 0 10% 0 10%;
+			}
+			h5 {
+				color: $gray-l-2;
+				font-size: 2em;
+			}
+			hr {
+				margin: 0 30% 0 30%;
+			}
+			p {
+				color: $gray-l-2;
+				font-size: 1em;
+			}
+		}
+		#footer {
+			height: 10vh;
+			background-color: $black;
+			h1 {
+				color: $white;
+				font-size: 3rem;
+				font-weight: 200;
+				letter-spacing: 1px;
+				margin: 0;
+				padding: 2rem 0 1rem 0;
+			}
+			.charity-cards {
+				margin-top: 5%;
+				padding: 0 10% 0 10%;
+			}
+			h5 {
+				color: $gray-l-2;
+			}
+			hr {
+				margin: 0 30% 0 30%;
+			}
+			p {
+				color: $gray-l-2;
+			}
+		}
+	}
+	.row {
+		margin-bottom: 0 !important;
+	}
+}
+
+// iPADS & OTHER TABLETS, iPHONES & OTHER SMARTPHONES //
+
+@media screen  and (max-width: 979px) {
+
+	body {
+		display: block;
+		font-family: 'AvenirNext';
+		background-color: $mw-bg-gray;
+		overflow-x: hidden;
+		.container {
+			min-width: 102%;
+			height: auto;
+			#section {
+				height: 100vh;
+			#background {
+				z-index: 0;
+				background-image: image-url("drummer.jpg");
+				height: 100%;
+				background-size: cover;
+				background-position: center;
+				text-align: center;
+				.navbar-fixed {
+					padding: 2rem 0;
+					width: 100%;
+					height: auto;
+						ul {
+							float: right;
+							list-style: none;
+							margin: 0;
+							li {
+								display: inline;
+								margin-left: 2.5rem;
+								a {
+									color: $white;
+									text-decoration: none;
+								}
+							}
+						}
+						.mobile-space {
+							margin-top: 2vh;
+						}
+				}
+				h1 {
+					color: $white;
+					font-size: 3rem;
+					font-weight: 600;
+					letter-spacing: 1px;
+					margin: 25vh 0 1rem 0;
+				}
+				.tagline-s {
+					font-family: 'AvenirNextLight';
+					font-size: 3rem;
+					font-weight: 100;
+					margin: 1rem 0;
+					text-align: center
+				}
+				.buttons {
+					margin-top: 0.75rem;
+					font-size: 1.5rem;
+				}
+				.btn-flat {
+					font-family: 'AvenirNextLight';
+					color: $white;
+					text-transform: none;
+					width: 80%;
+				}
+				.sign-btn {
+					font-family: 'AvenirNextLight';
+					border: solid;
+					border-width: 2px;
+					border-color: $white;
+					&:hover {
+						border-color: $mw-blue-l;
+						color: $mw-blue-l;
+						background-color: none;
+						transition: 1s;
+						-webkit-transition: 1s;
+					}
+				}
+				.ca-btn {
+					background-color: $mw-blue;
+					&:hover {
+						background-color: $white;
+						color: $mw-blue;
+						transition: 1s;
+						-webkit-transition: 1s;
+					}
+				}
+			}
+			}
+			#small-section{
+				height: 75vh;
+				text-align: center;
+				background-color: $dark;
+				h1 {
+					color: $white;
+					font-size: 3rem;
+					font-weight: 200;
+					letter-spacing: 1px;
+					margin: 0;
+					padding: 2rem 0 1rem 0;
+				}
+				.charity-cards {
+					padding: 10% 30%;
+				}
+				h5 {
+					color: $gray-l-2;
+					font-size: 3rem;
+				}
+				hr {
+					margin: 0 30% 0 30%;
+				}
+				p {
+					color: $gray-l-2;
+					font-size: 2rem;
+				}
+			}
+			#footer {
+				height: 10vh;
+				background-color: $black;
+				h1 {
+					color: $white;
+					font-size: 3rem;
+					font-weight: 200;
+					letter-spacing: 1px;
+					margin: 0;
+					padding: 2rem 0 1rem 0;
+				}
+				.charity-cards {
+					margin-top: 5%;
+					padding: 0 10% 0 10%;
+				}
+				h5 {
+					color: $gray-l-2;
+				}
+				hr {
+					margin: 0 30% 0 30%;
+				}
+				p {
+					color: $gray-l-2;
+				}
+			}
+		}
+		.row {
+			margin-bottom: 0 !important;
+		}
+	}
+
+}
